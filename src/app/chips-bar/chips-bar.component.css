@@ -1,0 +1,12 @@
+div{
+    background-color: black;
+    overflow: hidden;
+    height: 30px;
+    padding: 20px;
+}
+
+mat-chip{
+    padding: 12px;
+    font-size: 17px;
+    font-weight: 300;
+}

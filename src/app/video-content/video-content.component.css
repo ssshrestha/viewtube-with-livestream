@@ -1,0 +1,79 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar{
+  height: 70px;
+  padding: 10px;
+}
+
+.example-container {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+mat-form-field{
+  margin-bottom: 10px;
+  width: 500px;
+}
+
+mat-label{
+  font-size: 15px;
+}
+
+mat-drawer {
+  padding: 0 !important;
+}
+
+a {
+  width: 270px;
+  padding: 10px;
+  padding-left: 20px;
+  text-align: left;
+  font-size: 17px;
+}
+
+div {
+  display: inline;
+  margin-left: 20px;
+}
+
+.sign-in-row {
+  margin: 20px;
+  display: block;
+  padding: 10px;
+  font-size: 17px;
+}
+
+.sign-in-row>button {
+  margin: 20px;
+  margin-left: 0;
+  width: 120px;
+  font-size: 16px;
+}
+
+.example-card {
+  float: left; 
+  width: 300px;
+  height: 330px;
+  margin: 20px;
+}
+
+#duration{
+  margin: 0;
+}
+
+a > img {
+  width: 331px;
+  margin-left: -36px;
+}

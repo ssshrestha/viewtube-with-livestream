@@ -1,0 +1,226 @@
+<div>
+  <form
+    class="example-form"
+    #uploadForm="ngForm"
+    (submit)="getUploadDetails(uploadForm)"
+  >
+    <h2>
+      Video Details
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="!uploadForm.valid"
+      >
+        Save
+      </button>
+    </h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Video URL</mat-label>
+      <input matInput required #videoURL="ngModel" name="videoURL" ngModel />
+      <mat-hint *ngIf="videoURL.errors?.required"
+        >Video URL cannot be blank</mat-hint
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Video Title</mat-label>
+      <input
+        matInput
+        #videoTitle="ngModel"
+        name="title"
+        maxlength="120"
+        required
+        ngModel
+      />
+      <mat-hint *ngIf="videoTitle.errors?.required"
+        >Video Title cannot be blank</mat-hint
+      >
+      <mat-hint align="end">{{ videoTitle.value.length }} / 120</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        #videoDescription="ngModel"
+        name="video-description"
+        ngModel
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Video Duration</mat-label>
+      <input
+        matInput
+        #videoDuration="ngModel"
+        name="video-duration"
+        required
+        ngModel
+      />
+      <mat-hint *ngIf="videoDuration.errors?.required"
+        >Video Duration cannot be blank</mat-hint
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Channel Title</mat-label>
+      <input
+        matInput
+        required
+        #channelTitle="ngModel"
+        name="channel-title"
+        ngModel
+      />
+      <mat-hint *ngIf="channelTitle.errors?.required"
+        >Channel Title cannot be blank</mat-hint
+      >
+    </mat-form-field>
+
+    <h2>Audience</h2>
+    <p>Is this video made for kids?</p>
+    <mat-radio-group
+      #audienceRestrict="ngModel"
+      name="audienceRestrict"
+      ngModel
+    >
+      <mat-radio-button value="yes">Yes, its made for Kids</mat-radio-button>
+      <mat-radio-button value="no">Not for kids</mat-radio-button>
+    </mat-radio-group>
+
+    <h2>Age Restriction</h2>
+    <p>Restrict this video?</p>
+    <mat-radio-group #ageRestrict="ngModel" name="ageRestrict" ngModel>
+      <mat-radio-button value="1"
+        >Yes, Restrict my videos to viewers over 18</mat-radio-button
+      >
+      <mat-radio-button value="2"
+        >No, don't restrict my videos to viewers over 18</mat-radio-button
+      >
+    </mat-radio-group>
+
+    <h2>Tags</h2>
+    <mat-form-field class="example-chip-list" appearance="outline">
+      <mat-label>Video keywords</mat-label>
+      <mat-chip-list
+        #chipList
+        aria-label="Video keywords"
+        multiple
+        [formControl]="formControl"
+      >
+        <mat-chip
+          *ngFor="let keyword of keywords"
+          [selected]="keyword"
+          [value]="keyword"
+          (removed)="removeKeyword(keyword)"
+        >
+          {{ keyword }}
+        </mat-chip>
+        <input
+          placeholder="New keyword..."
+          [matChipInputFor]="chipList"
+          (matChipInputTokenEnd)="addKeywordFromInput($event)"
+        />
+      </mat-chip-list>
+    </mat-form-field>
+
+    <h2>Recording Date</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Recording Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="dp3"
+        disabled
+        #recordingDate="ngModel"
+        name="recordingDate"
+        ngModel
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    </mat-form-field>
+
+    <h2>Location</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Location</mat-label>
+      <mat-select #recordingDate="ngModel" name="recordingDate" ngModel>
+        <mat-option value="Los Angeles"> Los Angeles</mat-option>
+        <mat-option value="Mumbai"> Mumbai</mat-option>
+        <mat-option value="London"> London</mat-option>
+        <mat-option value="Warsaw"> Warsaw</mat-option>
+        <mat-option value="New York"> New York</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <h2>License</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>License</mat-label>
+      <mat-select [(value)]="selectedLicenseOption">
+        <mat-option value="Standard Viewtube License"
+          >Standard Viewtube License</mat-option
+        >
+        <mat-option value="Creative Common License"
+          >Creative Common License</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <h2>Distribution</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Distribution</mat-label>
+      <mat-select [(value)]="selectedDistibutionOption">
+        <mat-option value="Everywhere">Everywhere</mat-option>
+        <mat-option value="Only on Monetized Platform"
+          >Make this video available only on monetized platforms</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <h2>Video Category</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select>
+        <mat-option value="Film & Animation">Film & Animation</mat-option>
+        <mat-option value="Autos & Vehicles">Autos & Vehicles</mat-option>
+        <mat-option value="Music">Music</mat-option>
+        <mat-option value="Pets & Animals">Pets & Animals</mat-option>
+        <mat-option value="Sports">Sports</mat-option>
+        <mat-option value="Travel & Events">Travel & Events</mat-option>
+        <mat-option value="Gaming">Gaming</mat-option>
+        <mat-option value="People & Blogs">People & Blogs</mat-option>
+        <mat-option value="Comedy">Comedy</mat-option>
+        <mat-option value="Entertainment">Entertainment</mat-option>
+        <mat-option value="News & Politics">News & Politics</mat-option>
+        <mat-option value="Howto & Style">Howto & Style</mat-option>
+        <mat-option value="Education">Education</mat-option>
+        <mat-option value="Science & Technology"
+          >Science & Technology</mat-option
+        >
+        <mat-option value="Nonprofits & Activism"
+          >Nonprofits & Activism</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <h2>Visiblity</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Select an option</mat-label>
+      <mat-select [(value)]="selectedVisiblityOption">
+        <mat-option value="Private">Private</mat-option>
+        <mat-option value="Public">Public</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+
+<div>
+  <h2>Video Preview</h2>
+  <mat-card class="example-card">
+    <mat-card-title>Description</mat-card-title>
+    <mat-card-content>
+      <p>Visiblity - {{ selectedVisiblityOption }}</p>
+      <p>Distribution - {{ selectedDistibutionOption }}</p>
+      <p>License - {{ selectedLicenseOption }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

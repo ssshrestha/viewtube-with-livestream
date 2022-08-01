@@ -1,0 +1,162 @@
+<!-- Display video cards here with 
+    poster-image
+    length of video in hh:mm:ss format
+    2-liner description
+    duration since last published 
+    number of views
+-->
+
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    type="button"
+    mat-button
+    (click)="drawer.toggle()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>ViewTube</span>
+  <span class="example-spacer"></span>
+  <mat-form-field appearance="standard">
+    <mat-label>Search</mat-label>
+    <input matInput />
+  </mat-form-field>
+  <button
+    mat-icon-button
+    class="example-icon search-icon"
+    aria-label="Example icon-button with search icon"
+  >
+    <mat-icon>search</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    matTooltip="Audio Search"
+    class="example-icon mic-icon"
+    aria-label="Example icon-button with mic icon"
+  >
+    <mat-icon>mic</mat-icon>
+  </button>
+  <span class="example-spacer"></span>
+
+  <button
+    mat-icon-button
+    matTooltip="Notifications"
+    class="example-icon"
+    aria-label="Example icon-button with notifications icon"
+  >
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    matTooltip="Create Video"
+    class="example-icon"
+    aria-label="Example icon-button with video_call icon"
+    routerLink="studio/upload"
+  >
+    <mat-icon>video_call</mat-icon>
+  </button>
+  <button
+    matTooltip="Apps"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with apps icon"
+  >
+    <mat-icon>apps</mat-icon>
+  </button>
+  <button
+    matTooltip="Manage Profile"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with person_outline icon"
+    [matMenuTriggerFor]="menu"
+  >
+    <mat-icon>person_outline</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable Alerts</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>feedback</mat-icon>
+      <span>Send Feedback</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" autosize>
+  <app-chips-bar></app-chips-bar>
+
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <a mat-button routerLink=".">
+      <mat-icon>home</mat-icon>
+      <div>Home</div>
+    </a>
+
+    <br />
+    <a mat-button routerLink=".">
+      <mat-icon>explore</mat-icon>
+      <div>Explore</div>
+    </a>
+
+    <br />
+    <a mat-button routerLink=".">
+      <mat-icon>subscriptions</mat-icon>
+      <div>Subscriptions</div>
+    </a>
+
+    <br />
+    <a mat-button routerLink=".">
+      <mat-icon>video_library</mat-icon>
+      <div>Library</div>
+    </a>
+
+    <br />
+    <a mat-button routerLink=".">
+      <mat-icon>history</mat-icon>
+      <div>History</div>
+    </a>
+    <hr />
+
+    <div class="sign-in-row">
+      Sign in to like videos, <br />
+      comment and subscribe.
+      <br />
+      <button mat-stroked-button color="primary">
+        <mat-icon>account_circle</mat-icon>&nbsp;&nbsp;SIGN IN
+      </button>
+    </div>
+  </mat-drawer>
+
+  <mat-card
+    app-player
+    class="example-card"
+    *ngFor="let video of video$ | async"
+  >
+    <a href="#">
+      <img mat-card-image [src]="video.snippet.thumbnails.medium.url" />
+    </a>
+    <div id="duration">
+      {{ video.contentDetails.length }}
+    </div>
+    <mat-card-content>
+      <h5>{{ video.snippet.title }}</h5>
+      <p>{{ video.snippet.channelTitle }}</p>
+      <p>
+        {{ video.statistics.viewCount }} views .
+        {{ video.snippet.relativeTime }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</mat-drawer-container>

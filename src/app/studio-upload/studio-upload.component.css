@@ -1,0 +1,55 @@
+h2 {
+    padding: 18px;
+}
+
+div {
+    float: left;
+    width: 650px;
+}
+
+.example-card {
+    padding-top: 50px;
+    width: 620px;
+    margin: 5px;
+}
+
+h2>button {
+    margin-left: 425px;
+}
+
+mat-card-title {
+    margin-bottom: 30px;
+}
+
+mat-form-field {
+    width: 635px;
+    margin-left: 10px;
+}
+
+mat-card-content>p {
+    margin-top: 15px;
+}
+
+textarea {
+    height: 100px;
+}
+
+mat-radio-group {
+    margin-left: 20px;
+}
+
+form>p {
+    margin-left: 20px;
+}
+
+form>h2 {
+    padding-bottom: 0;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
+  
+  .example-button-container > button {
+    margin: 0 12px;
+  }

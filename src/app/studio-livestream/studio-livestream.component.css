@@ -1,0 +1,30 @@
+h1 {
+    margin: 20px;
+    margin-bottom: 0;
+}
+
+mat-form-field, button {
+    margin: 20px;
+}
+
+.example-full-width {
+    width: 680px;
+}
+
+.example-width {
+    width: 400px;
+}
+
+textarea {
+    width: 900px;
+    height: 100px;
+}
+.example-button-container>button {
+    margin: 0 12px;
+}
+
+.example-chip-list {
+    position: relative;
+    bottom: 85px;
+    width: 30%;
+}

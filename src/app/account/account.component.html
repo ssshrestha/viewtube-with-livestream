@@ -1,0 +1,19 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <a routerLink=""> <h2>ViewTube</h2></a>
+    <br />
+    <a mat-button routerLink="register">
+      <div>Register</div>
+    </a>
+    <br />
+    <a mat-button routerLink="login">
+      <div>Login</div>
+    </a>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar color="primary">
+      <span>ViewTube Accounts</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

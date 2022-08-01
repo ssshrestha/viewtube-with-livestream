@@ -1,0 +1,71 @@
+<h1>Live Stream Editor</h1>
+
+<form class="example-form" [formGroup]="liveStreamForm">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Add Title</mat-label>
+    <input matInput formControlName="streamTitle" />
+  </mat-form-field>
+  <br />
+  <mat-form-field appearance="fill">
+    <mat-label>From Date</mat-label>
+    <input matInput [matDatepicker]="dp" formControlName="streamStartDate" />
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>From Time</mat-label>
+    <input matInput formControlName="streamStartTime" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>To Time</mat-label>
+    <input matInput formControlName="streamEndTime" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>To Date</mat-label>
+    <input matInput [matDatepicker]="dp1" formControlName="streamEndDate" />
+    <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+    <mat-datepicker #dp1></mat-datepicker>
+  </mat-form-field>
+
+  <h1>Event Details</h1>
+
+  <mat-form-field class="example-width" appearance="fill">
+    <mat-label>Add Event Details</mat-label>
+    <textarea matInput formControlName="streamDetails"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="example-chip-list" appearance="outline">
+    <mat-label>Guests</mat-label>
+    <mat-chip-list
+      #chipList
+      aria-label="Video keywords"
+      multiple
+      [formControl]="formControl"
+    >
+      <mat-chip
+        *ngFor="let keyword of keywords"
+        [value]="keyword"
+        (removed)="removeKeyword(keyword)"
+      >
+        {{ keyword }}
+      </mat-chip>
+      <input
+        [matChipInputFor]="chipList"
+        (matChipInputTokenEnd)="addKeywordFromInput($event)"
+      />
+    </mat-chip-list>
+  </mat-form-field>
+
+  <br />
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!liveStreamForm.valid"
+    (click)="saveLiveStreamDetails()"
+  >
+    Save
+  </button>
+</form>
